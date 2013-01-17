@@ -1,0 +1,9 @@
+<h1>Создание задачи</h1>
+<%= form_for @task do |f| %>
+  <%= f.hidden_field :context_id %>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  <%= f.submit 'Создать', :disable_with => 'Подождите...' %>
+<% end %>

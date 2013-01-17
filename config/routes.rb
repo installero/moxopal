@@ -1,13 +1,18 @@
 Moxopal::Application.routes.draw do |map|
-  get "contexts/edit"
+  get "tasks/new"
 
-  get "contexts/new"
+  get "tasks/show"
 
-  get "contexts/show"
+  get "tasks/index"
 
-  get "contexts/index"
+  get "tasks/edit"
+
+  get "tasks/update"
+
+  get "tasks/create"
 
   resources :contexts
+  resources :tasks
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

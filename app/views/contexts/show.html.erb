@@ -46,12 +46,13 @@
               <a style="color:green" href="#">✔</a>
               <a style="color:red" href="#">•</a>
             </div>
-            <ul class="tasks" style="display:none">
-              <li><a href="">Дописать текст про вид ВФ</a><em>✔</em></li>
-            	<li><a href="">Статья Пригодина Эфетова</a><em>✔</em></li>
-            	<li><a href="">Статья Брома Михельса</a><em>✔</em></li>
+            <ul class="tasks">
+              <% @context.tasks[0..3].each do |task| %>
+                <li><%= link_to task.title, task %></li>
+              <% end %>
+              <%= link_to "Добавить задачу", new_task_path(:id => @context.id) %>
             </ul>
-            <div class="timer">
+            <div class="timer" style="display:none">
               <p class="timer-time">08:17</p>
               <p class="timer-task">Статья Брома Михельса<a href="#" style="margin-left:.5em; color:black; text-decoration:none">✔</a></p>
             </time>
