@@ -9,7 +9,6 @@
 
     body {background:url(/images/bg.png) #fffef9 50% 50%; color:#222}
 
-
     h1 {font-weight:normal; font-size:200%}
     .actions em {font-style:normal; margin:3px .5em; float:left; height:18px}
     .actions a {
@@ -40,11 +39,13 @@
             <h1><%= @context.title %></h1>
             <%= image_tag @context.picture.url(:medium), :style => 'margin:1.5em 0 .5em' %>
             <div class="actions">
-              <em>•</em>
-              <em>•</em>
-              <em>✔</em>
-              <a style="color:green" href="#">✔</a>
-              <a style="color:red" href="#">•</a>
+              <% @context.activities.each do |activity| %>
+                <em><%= symbol(activity) %></em>
+              <% end %>
+              <%#<em>•</em>%>
+              <%#<em>✔</em>%>
+              <%= link_to "✔", activities_path(:activity => {:context_id => @context.id, :accepted => true}), :method => :post, :style => 'color:green' %>
+              <%= link_to "•", activities_path(:activity => {:context_id => @context.id, :accepted => false}), :method => :post, :style => 'color:red' %>
             </div>
             <ul class="tasks">
               <% @context.tasks[0..3].each do |task| %>
