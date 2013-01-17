@@ -1,0 +1,12 @@
+<h1>Создание карточки</h1>
+<%= form_for @context do |f| %>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :max_minutes %>
+    <%= f.text_field :max_minutes %>
+  </p>
+  <%= f.submit 'Создать', :disable_with => 'Подождите...' %>
+<% end %>
