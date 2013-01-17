@@ -1,5 +1,7 @@
 Moxopal::Application.routes.draw do |map|
-  resources :contexts
+  resources :contexts do
+    get 'shuffle', :on => :collection
+  end
   resources :tasks
   resources :activities
 

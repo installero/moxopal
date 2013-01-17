@@ -1,2 +1,9 @@
-<h1>Contexts#index</h1>
-<p>Find me in app/views/contexts/index.html.erb</p>
+<h1>Карточки активностей</h1>
+<table>
+  <% @contexts.each do |context| %>
+    <tr>
+      <td><%= link_to context.title, @context %></td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to "Перемешать", shuffle_contexts_path %>

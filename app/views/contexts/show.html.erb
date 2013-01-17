@@ -42,17 +42,15 @@
               <% @context.activities.each do |activity| %>
                 <em><%= symbol(activity) %></em>
               <% end %>
-              <%#<em>•</em>%>
-              <%#<em>✔</em>%>
               <%= link_to "✔", activities_path(:activity => {:context_id => @context.id, :accepted => true}), :method => :post, :style => 'color:green' %>
               <%= link_to "•", activities_path(:activity => {:context_id => @context.id, :accepted => false}), :method => :post, :style => 'color:red' %>
             </div>
             <ul class="tasks">
               <% @context.tasks[0..3].each do |task| %>
-                <li><%= link_to task.title, task %></li>
+                <li><%= link_to task.title, activities_path(:activity => {:task_id => task.id, :context_id => @context.id, :accepted => true}), :method => :post %></li>
               <% end %>
-              <%= link_to "Добавить задачу", new_task_path(:id => @context.id) %>
             </ul>
+            <%= link_to "Добавить задачу", new_task_path(:id => @context.id) %>
             <div class="timer" style="display:none">
               <p class="timer-time">08:17</p>
               <p class="timer-task">Статья Брома Михельса<a href="#" style="margin-left:.5em; color:black; text-decoration:none">✔</a></p>

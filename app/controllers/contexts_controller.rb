@@ -8,6 +8,7 @@ class ContextsController < ApplicationController
   end
 
   def index
+    @contexts = Context.all
   end
 
   def edit
@@ -24,6 +25,11 @@ class ContextsController < ApplicationController
         format.html { redirect_to new_context_path }
       end
     end
+  end
+
+  def shuffle
+    Context.shuffle_positions
+    redirect_to contexts_path
   end
 
 end
