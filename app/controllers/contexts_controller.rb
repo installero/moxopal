@@ -20,7 +20,7 @@ class ContextsController < ApplicationController
     respond_to do |format|
       if context.save!
         flash[:notice] = 'Context created'
-        format.html { redirect_to context }
+        format.html { redirect_to contexts_path }
       else
         format.html { redirect_to new_context_path }
       end

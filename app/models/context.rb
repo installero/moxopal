@@ -16,6 +16,8 @@ class Context < ActiveRecord::Base
 
   def next
     contexts = Context.all
-    contexts[contexts.index(self) + 1]
+    context = contexts[contexts.index(self) + 1]
+    context = contexts.first if context.nil?
+    return context
   end
 end
