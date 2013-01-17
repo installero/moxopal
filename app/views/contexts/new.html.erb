@@ -1,5 +1,5 @@
 <h1>Создание карточки</h1>
-<%= form_for @context do |f| %>
+<%= form_for @context, :url => contexts_path, :html => {:multipart => true} do |f| %>
   <p>
     <%= f.label :title %>
     <%= f.text_field :title %>
@@ -7,6 +7,10 @@
   <p>
     <%= f.label :max_minutes %>
     <%= f.text_field :max_minutes %>
+  </p>
+  <p>
+    <%= f.label :picture %>
+    <%= f.file_field :picture %>
   </p>
   <%= f.submit 'Создать', :disable_with => 'Подождите...' %>
 <% end %>

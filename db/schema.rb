@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121228104829) do
+ActiveRecord::Schema.define(:version => 20130117081614) do
 
   create_table "contexts", :force => true do |t|
     t.string   "title"
@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(:version => 20121228104829) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
 end

@@ -1,2 +1,64 @@
-<h1>Contexts#show</h1>
-<p>Find me in app/views/contexts/show.html.erb</p>
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+  <style type="text/css">
+    html, body {height:100%; font-family:Verdana, Tahoma, sans-serif}
+    * {margin:0; padding:0}
+
+    body {background:url(/images/bg.png) #fffef9 50% 50%; color:#222}
+
+
+    h1 {font-weight:normal; font-size:200%}
+    .actions em {font-style:normal; margin:3px .5em; float:left; height:18px}
+    .actions a {
+      text-decoration:none; color:black;
+      border:1px solid #d0d0d0;
+      padding:2px 4px;
+      background:#eee;
+      float:left;
+      width:16px;
+      margin-right:.5em;
+    }
+    .actions {overflow:hidden; width:80%; margin:1em 0}
+    .tasks {font-size:80%; text-align:left; width:80%; margin-top:30px}
+    .tasks li {list-style:none; margin:.5em 0}
+    .tasks em {float:right}
+    .tasks a {color:#333; text-decoration:none; border-bottom:1px dotted}
+
+    .timer-time {font-size:300%}
+    .timer-task {color:#999; font-size:80%; margin-top:1em}
+  </style>
+</head>
+<body>
+  <table class="wrapper" width=100% height=100% cellspacing=0>
+    <tr>
+      <td valign="middle" align="center">
+        <div style="margin:0 auto; width:350px; height:500px; -moz-box-shadow:2px 2px 4px 4px #ddd; -webkit-box-shadow: 2px 2px 4px 4px #ddd; box-shadow:2px 2px 4px 4px rgba(0,0,0,0.3); border-radius:7px; -webkit-border-radius:7px; -moz-border-radius:7px; background:white">
+          <div style="padding:30px">
+            <h1><%= @context.title %></h1>
+            <%= image_tag @context.picture.url(:medium), :style => 'margin:1.5em 0 .5em' %>
+            <div class="actions">
+              <em>•</em>
+              <em>•</em>
+              <em>✔</em>
+              <a style="color:green" href="#">✔</a>
+              <a style="color:red" href="#">•</a>
+            </div>
+            <ul class="tasks" style="display:none">
+              <li><a href="">Дописать текст про вид ВФ</a><em>✔</em></li>
+            	<li><a href="">Статья Пригодина Эфетова</a><em>✔</em></li>
+            	<li><a href="">Статья Брома Михельса</a><em>✔</em></li>
+            </ul>
+            <div class="timer">
+              <p class="timer-time">08:17</p>
+              <p class="timer-task">Статья Брома Михельса<a href="#" style="margin-left:.5em; color:black; text-decoration:none">✔</a></p>
+            </time>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

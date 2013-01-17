@@ -4,6 +4,7 @@ class ContextsController < ApplicationController
   end
 
   def show
+    @context = Context.find params[:id]
   end
 
   def index
@@ -13,10 +14,10 @@ class ContextsController < ApplicationController
   end
 
   def create
-    context = Context.new(params[:context])
+    context = Context.new params[:context]
 
     respond_to do |format|
-      if context.save
+      if context.save!
         flash[:notice] = 'Context created'
         format.html { redirect_to context }
       else
