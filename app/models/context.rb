@@ -13,4 +13,9 @@ class Context < ActiveRecord::Base
       c.save
     end
   end
+
+  def next
+    contexts = Context.all
+    contexts[contexts.index(self) + 1]
+  end
 end
