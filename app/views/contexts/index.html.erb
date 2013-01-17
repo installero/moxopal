@@ -4,6 +4,9 @@
   <% @contexts.each do |context| %>
     <tr>
       <td><%= link_to context.title, context %></td>
+      <% context.activities.each do |a| %>
+        <td><%= symbol(a) %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
