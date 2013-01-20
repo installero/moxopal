@@ -56,9 +56,9 @@
               <p class="timer-task">Статья Брома Михельса<a href="#" style="margin-left:.5em; color:black; text-decoration:none">✔</a></p>
             </time>
           </div>
+          <%= link_to raw("&uarr;"), contexts_path %>
+          <%= link_to raw("&rarr;"), @context.next %>
         </div>
-        <%= link_to raw("&uarr;"), contexts_path %>
-        <%= link_to raw("&rarr;"), @context.next %>
       </td>
     </tr>
   </table>
