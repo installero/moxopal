@@ -1,34 +1,32 @@
-<body>
-  <table class="wrapper" width=100% height=100% cellspacing=0>
-    <tr>
-      <td valign="middle" align="center">
-        <div style="margin:0 auto; width:350px; height:500px; -moz-box-shadow:2px 2px 4px 4px #ddd; -webkit-box-shadow: 2px 2px 4px 4px #ddd; box-shadow:2px 2px 4px 4px rgba(0,0,0,0.3); border-radius:7px; -webkit-border-radius:7px; -moz-border-radius:7px; background:white">
-          <div style="padding:30px">
-            <h1><%= @context.title %></h1>
-            <%= image_tag @context.picture.url(:medium), :style => 'margin:1.5em 0 .5em' %>
-            <div class="actions">
-              <% @context.activities.each do |activity| %>
-                <em><%= symbol(activity) %></em>
-              <% end %>
-              <%= link_to "✔", activities_path(:activity => {:context_id => @context.id, :accepted => true}), :method => :post, :style => 'color:green' %>
-              <%= link_to "•", activities_path(:activity => {:context_id => @context.id, :accepted => false}), :method => :post, :style => 'color:red' %>
-            </div>
-            <ul class="tasks">
-              <% @context.tasks[0..3].each do |task| %>
-                <li><%= link_to task.title, activities_path(:activity => {:task_id => task.id, :context_id => @context.id, :accepted => true}), :method => :post %></li>
-              <% end %>
-            </ul>
-            <%= link_to "+", new_task_path(:id => @context.id) %>
-            <div class="timer" style="display:none">
-              <p class="timer-time">08:17</p>
-              <p class="timer-task">Статья Брома Михельса<a href="#" style="margin-left:.5em; color:black; text-decoration:none">✔</a></p>
+<table class="wrapper" width=100% height=100% cellspacing=0>
+  <tr>
+    <td valign="middle" align="center">
+      <div style="margin:0 auto; width:350px; height:500px; -moz-box-shadow:2px 2px 4px 4px #ddd; -webkit-box-shadow: 2px 2px 4px 4px #ddd; box-shadow:2px 2px 4px 4px rgba(0,0,0,0.3); border-radius:7px; -webkit-border-radius:7px; -moz-border-radius:7px; background:white">
+        <div style="padding:30px">
+          <h1><%= @context.title %></h1>
+          <%= image_tag @context.picture.url(:medium), :style => 'margin:1.5em 0 .5em' %>
+          <div class="actions">
+            <% @context.activities.each do |activity| %>
+              <em><%= symbol(activity) %></em>
+            <% end %>
+            <%= link_to "✔", activities_path(:activity => {:context_id => @context.id, :accepted => true}), :method => :post, :style => 'color:green' %>
+            <%= link_to "•", activities_path(:activity => {:context_id => @context.id, :accepted => false}), :method => :post, :style => 'color:red' %>
+          </div>
+          <ul class="tasks">
+            <% @context.tasks[0..3].each do |task| %>
+              <li><%= link_to task.title, activities_path(:activity => {:task_id => task.id, :context_id => @context.id, :accepted => true}), :method => :post %></li>
+            <% end %>
+          </ul>
+          <%= link_to "+", new_task_path(:id => @context.id) %>
+          <div class="timer" style="display:none">
+            <p class="timer-time">08:17</p>
+            <p class="timer-task">Статья Брома Михельса<a href="#" style="margin-left:.5em; color:black; text-decoration:none">✔</a></p>
             </time>
           </div>
           <%= link_to raw("&uarr;"), contexts_path %>
           <%= link_to raw("&rarr;"), @context.next %>
         </div>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>
+      </div>
+    </td>
+  </tr>
+</table>
