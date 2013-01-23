@@ -1,1 +1,1 @@
-ssh moxopal@installero.com 'cd www && git pull && touch tmp/restart.txt'
+ssh moxopal@installero.com 'cd www && git pull && bundle install && touch tmp/restart.txt'
