@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Moxopal</title>
+	<meta charset="UTF-8">
+	<title><%= @context.title if @context %> — Moxopal</title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
 </head>
 <body>
 

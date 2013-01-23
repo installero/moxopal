@@ -1,0 +1,24 @@
+html, body {height:100%; font-family:Verdana, Tahoma, sans-serif}
+* {margin:0; padding:0}
+
+body {background:url(/images/bg.png) #fffef9 50% 50%; color:#222}
+
+h1 {font-weight:normal; font-size:200%}
+.actions em {font-style:normal; margin:3px .5em; float:left; height:18px}
+.actions a {
+  text-decoration:none; color:black;
+  border:1px solid #d0d0d0;
+  padding:2px 4px;
+  background:#eee;
+  float:left;
+  width:16px;
+  margin-right:.5em;
+}
+.actions {overflow:hidden; width:80%; margin:1em 0}
+.tasks {font-size:80%; text-align:left; width:80%; margin-top:30px}
+.tasks li {list-style:none; margin:.5em 0}
+.tasks em {float:right}
+.tasks a {color:#333; text-decoration:none; border-bottom:1px dotted}
+
+.timer-time {font-size:300%}
+.timer-task {color:#999; font-size:80%; margin-top:1em}

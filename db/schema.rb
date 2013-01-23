@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -28,9 +27,9 @@ ActiveRecord::Schema.define(:version => 20130117103128) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "picture_file_name"
-    t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.string   "picture_content_type"
   end
 
   create_table "tasks", :force => true do |t|
