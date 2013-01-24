@@ -9,20 +9,25 @@
             <% @context.activities.each do |activity| %>
               <em><%= symbol(activity) %></em>
             <% end %>
-            <%= link_to "✔", activities_path(:activity => {:context_id => @context.id, :accepted => true}), :method => :post, :style => 'color:green' %>
-            <%= link_to "•", activities_path(:activity => {:context_id => @context.id, :accepted => false}), :method => :post, :style => 'color:red' %>
-          </div>
-          <ul class="tasks">
-            <% @context.tasks[0..3].each do |task| %>
-              <li><%= link_to task.title, activities_path(:activity => {:task_id => task.id, :context_id => @context.id, :accepted => true}), :method => :post %></li>
+            <% unless @context.active? %>
+              <%= link_to "✔", activities_path(:activity => {:context_id => @context.id, :accepted => true}), :method => :post, :style => 'color:green' %>
+              <%= link_to "•", activities_path(:activity => {:context_id => @context.id, :accepted => false}), :method => :post, :style => 'color:red' %>
             <% end %>
-          </ul>
-          <%= link_to "+", new_task_path(:id => @context.id) %>
-          <div class="timer" style="display:none">
-            <p class="timer-time">08:17</p>
-            <p class="timer-task">Статья Брома Михельса<a href="#" style="margin-left:.5em; color:black; text-decoration:none">✔</a></p>
-            </time>
           </div>
+          <% unless @context.active? %>
+            <ul class="tasks">
+              <% @context.tasks[0..3].each do |task| %>
+                <li><%= link_to task.title, activities_path(:activity => {:task_id => task.id, :context_id => @context.id, :accepted => true}), :method => :post, :title => 'Начать заниматься этой задачей' %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <div class="timer">
+              <p class="timer-time" id="timer"></p>
+              <%= javascript_tag "setTimer('timer',#{@context.time_passed/60},#{@context.time_passed%60});" %>
+              <p class="timer-task" style="display:none">Статья Брома Михельса<a href="#" style="margin-left:.5em; color:black; text-decoration:none">✔</a></p>
+            </div>
+          <% end %>
+          <%= link_to "+", new_task_path(:id => @context.id) %>
           <%= link_to raw("&uarr;"), contexts_path %>
           <%= link_to raw("&rarr;"), @context.next %>
         </div>

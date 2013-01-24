@@ -22,3 +22,5 @@ h1 {font-weight:normal; font-size:200%}
 
 .timer-time {font-size:300%}
 .timer-task {color:#999; font-size:80%; margin-top:1em}
+
+table tr.active a {font-weight:bold}

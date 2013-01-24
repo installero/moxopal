@@ -20,4 +20,22 @@ class Context < ActiveRecord::Base
     context = contexts.first if context.nil?
     return context
   end
+
+  def start
+    Context.stop_all
+    self.status = 'active'
+    self.save
+  end
+
+  def active?
+    status == 'active'
+  end
+
+  def self.stop_all
+    Context.where(:status => 'active').each{|c| c.status = 'inactive'; c.save}
+  end
+
+  def time_passed
+   (Time.now - activities.last.created_at).round
+  end
 end

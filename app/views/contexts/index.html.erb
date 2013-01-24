@@ -2,7 +2,7 @@
 <%= link_to "Создать карточку", new_context_path %>
 <table>
   <% @contexts.each do |context| %>
-    <tr>
+    <tr class="<%= 'active' if context.active? %>">
       <td><%= link_to context.title, context %></td>
       <% context.activities.each do |a| %>
         <td><%= symbol(a) %></td>
