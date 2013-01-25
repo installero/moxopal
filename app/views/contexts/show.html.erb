@@ -3,6 +3,7 @@
     <td valign="middle" align="center">
       <div style="margin:0 auto; width:350px; height:500px; -moz-box-shadow:2px 2px 4px 4px #ddd; -webkit-box-shadow: 2px 2px 4px 4px #ddd; box-shadow:2px 2px 4px 4px rgba(0,0,0,0.3); border-radius:7px; -webkit-border-radius:7px; -moz-border-radius:7px; background:white">
         <div style="padding:30px">
+          <div style="float:right; width:16px; height:16px; margin:-16px -16px 0 -16px"><%= link_to image_tag('/images/edit.png'), edit_context_path(@context) %></div>
           <h1><%= @context.title %></h1>
           <%= image_tag @context.picture.url(:medium), :style => 'margin:1.5em 0 .5em' %>
           <div class="actions">

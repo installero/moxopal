@@ -12,6 +12,7 @@ class ContextsController < ApplicationController
   end
 
   def edit
+    @context = Context.find params[:id]
   end
 
   def create
@@ -30,6 +31,16 @@ class ContextsController < ApplicationController
   def shuffle
     Context.shuffle_positions
     redirect_to contexts_path
+  end
+
+  def update
+    @context = Context.find(params[:id])
+
+    if @context.update_attributes(params[:context])
+      redirect_to @context
+    else
+      render :action => "edit"
+    end
   end
 
 end

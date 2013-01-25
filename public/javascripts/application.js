@@ -23,3 +23,13 @@ function zeroPad(num,count){
   while(num.length < count){num = "0"+num;}
   return num;
 };
+
+var counter = 1;
+
+function add_fields(link, association, content, length) {
+  if(counter == 1) counter = length;
+  var new_id = counter;
+  counter++;
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).before(content.replace(regexp, new_id));
+}

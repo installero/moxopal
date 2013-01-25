@@ -3,6 +3,8 @@ class Context < ActiveRecord::Base
   has_many :tasks, :dependent => :destroy
   has_many :activities, :dependent => :destroy
 
+  accepts_nested_attributes_for :tasks
+
   after_create{|c| c.position = c.id}
 
   default_scope order('position')

@@ -1,2 +1,22 @@
-<h1>Contexts#edit</h1>
-<p>Find me in app/views/contexts/edit.html.erb</p>
+<table class="wrapper" width=100% height=100% cellspacing=0>
+  <tr>
+    <td valign="middle" align="center">
+      <div style="margin:0 auto; width:350px; min-height:500px; -moz-box-shadow:2px 2px 4px 4px #ddd; -webkit-box-shadow: 2px 2px 4px 4px #ddd; box-shadow:2px 2px 4px 4px rgba(0,0,0,0.3); border-radius:7px; -webkit-border-radius:7px; -moz-border-radius:7px; background:white">
+        <div style="padding:30px">
+          <% form_for @context, :method => :put, :html => {:multipart => true} do |f| %>
+            <h1><%= f.text_field :title, :style => 'font-size:100%; width:100%; text-align:center' %></h1>
+            <%= image_tag @context.picture.url(:medium), :style => 'margin:1.5em 0 .5em' %>
+            <%= f.file_field :picture %>
+            <ul class="tasks">
+              <% f.fields_for :tasks do |tf| %>
+                <%= render 'task_fields', :f => tf %>
+              <% end %>
+              <%= link_to_add_fields 'Добавить задачу', f, :tasks, 'add_task', @context.tasks.length %>
+            </ul>
+            <p style="font-size:80%; margin:1em 0; background:#f0f0f0; padding:10px"><%= f.submit 'Сохранить', :disable_with => 'Подождите...' %> или <%= link_to "отменить", @context %></p>
+          <% end %>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
