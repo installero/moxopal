@@ -17,7 +17,7 @@
           </div>
           <% unless @context.active? %>
             <ul class="tasks">
-              <% @context.active_tasks[0..2].each do |task| %>
+              <% @context.active_tasks.each do |task| %>
                 <li id="task_<%= task.id %>">
                   <%= link_to task.title, activities_path(:activity => {:task_id => task.id, :context_id => @context.id, :accepted => true}), :method => :post, :title => 'Начать заниматься этой задачей' %>
                   <%= link_to '✔', task_path(task, :task => {:status => 'done'}), :remote => true, :method => :put, :title => 'Задача выполнена!' %>
