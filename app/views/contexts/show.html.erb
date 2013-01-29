@@ -17,8 +17,11 @@
           </div>
           <% unless @context.active? %>
             <ul class="tasks">
-              <% @context.tasks[0..3].each do |task| %>
-                <li><%= link_to task.title, activities_path(:activity => {:task_id => task.id, :context_id => @context.id, :accepted => true}), :method => :post, :title => 'Начать заниматься этой задачей' %></li>
+              <% @context.active_tasks[0..2].each do |task| %>
+                <li id="task_<%= task.id %>">
+                  <%= link_to task.title, activities_path(:activity => {:task_id => task.id, :context_id => @context.id, :accepted => true}), :method => :post, :title => 'Начать заниматься этой задачей' %>
+                  <%= link_to '✔', task_path(task, :task => {:status => 'done'}), :remote => true, :method => :put, :title => 'Задача выполнена!' %>
+                </li>
               <% end %>
             </ul>
           <% else %>
@@ -28,7 +31,6 @@
               <p class="timer-task" style="display:none">Статья Брома Михельса<a href="#" style="margin-left:.5em; color:black; text-decoration:none">✔</a></p>
             </div>
           <% end %>
-          <%= link_to "+", new_task_path(:id => @context.id) %>
           <%= link_to raw("&uarr;"), contexts_path %>
           <%= link_to raw("&rarr;"), @context.next %>
         </div>

@@ -5,9 +5,13 @@ class Context < ActiveRecord::Base
 
   accepts_nested_attributes_for :tasks
 
-  after_create{|c| c.position = c.id}
+  after_create{|c| c.position = c.id; c.save}
 
   default_scope order('position')
+
+  def active_tasks
+    tasks.where("status IN ('active')")[0..2]
+  end
 
   def self.shuffle_positions
     Context.all.shuffle.each_with_index do |c,i|

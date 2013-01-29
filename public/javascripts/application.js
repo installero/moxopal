@@ -24,10 +24,10 @@ function zeroPad(num,count){
   return num;
 };
 
-var counter = 1;
+var counter = 0;
 
 function add_fields(link, association, content, length) {
-  if(counter == 1) counter = length;
+  if(counter == 0) counter = length;
   var new_id = counter;
   counter++;
   var regexp = new RegExp("new_" + association, "g")
