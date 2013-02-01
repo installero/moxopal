@@ -4,11 +4,11 @@ class ContextsController < ApplicationController
   end
 
   def show
-    @context = Context.unscoped.find params[:id]
+    @context = Context.find params[:id]
   end
 
   def index
-    @contexts = Context.all
+    @contexts = Context.active
     @archived_contexts = Context.archived
   end
 
@@ -45,7 +45,7 @@ class ContextsController < ApplicationController
   end
 
   def archive
-    @context = Context.unscoped.find(params[:id])
+    @context = Context.find(params[:id])
     path = @context.archived? ? context_path(@context) : context_path(@context.next)
     if @context.archived?
       @context.unarchive

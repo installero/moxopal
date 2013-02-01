@@ -7,7 +7,7 @@ class Context < ActiveRecord::Base
 
   after_create{|c| c.position = c.id; c.status = 'common'; c.save}
 
-  default_scope where("status IN ('common','active')").order('position')
+  scope :active, where("status IN ('common','active')").order('position')
   scope :archived, where(:status => 'archived')
 
   def active_tasks
@@ -15,14 +15,14 @@ class Context < ActiveRecord::Base
   end
 
   def self.shuffle_positions
-    Context.all.shuffle.each_with_index do |c,i|
+    Context.active.shuffle.each_with_index do |c,i|
       c.position = i
       c.save
     end
   end
 
   def next
-    contexts = Context.all
+    contexts = Context.active
     context = contexts[contexts.index(self) + 1]
     context = contexts.first if context.nil?
     return context
