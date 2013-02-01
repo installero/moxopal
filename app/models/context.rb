@@ -5,9 +5,10 @@ class Context < ActiveRecord::Base
 
   accepts_nested_attributes_for :tasks
 
-  after_create{|c| c.position = c.id; c.save}
+  after_create{|c| c.position = c.id; c.status = 'common'; c.save}
 
-  default_scope order('position')
+  default_scope where("status IN ('common','active')").order('position')
+  scope :archived, where(:status => 'archived')
 
   def active_tasks
     tasks.where("status IN ('active')")[0..2]
@@ -38,10 +39,24 @@ class Context < ActiveRecord::Base
   end
 
   def self.stop_all
-    Context.where(:status => 'active').each{|c| c.status = 'inactive'; c.save}
+    Context.where(:status => 'active').each{|c| c.status = 'common'; c.save}
   end
 
   def time_passed
    (Time.now - activities.last.created_at).round
+  end
+
+  def archive
+    self.status = 'archived'
+    self.save
+  end
+
+  def unarchive
+    self.status = 'common'
+    self.save
+  end
+
+  def archived?
+    status == 'archived'
   end
 end
