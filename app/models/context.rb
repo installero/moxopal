@@ -15,6 +15,14 @@ class Context < ActiveRecord::Base
     tasks.where("status IN ('active')")[0..2]
   end
 
+  def last_activities
+    activities.where :created_at => (Time.now.beginning_of_week..Time.now)
+  end
+
+  def activity_percentage
+    (100*(activities.where :accepted => true).count.to_f/activities.count).round
+  end
+
   def self.shuffle_positions
     Context.active.shuffle.each_with_index do |c,i|
       c.position = i
