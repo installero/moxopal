@@ -5,6 +5,7 @@ class ContextsController < ApplicationController
 
   def show
     @context = Context.find params[:id]
+    @activities = @context.activities.where :created_at => (Time.now.beginning_of_week..Time.now)
   end
 
   def index

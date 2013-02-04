@@ -10,7 +10,7 @@
           <h1><%= @context.title %></h1>
           <%= image_tag @context.picture.url(:medium), :style => 'margin:1.5em 0 .5em' %>
           <div class="actions">
-            <% @context.activities.each do |activity| %>
+            <% @activities.each do |activity| %>
               <em><%= symbol(activity) %></em>
             <% end %>
             <% unless @context.active? %>
