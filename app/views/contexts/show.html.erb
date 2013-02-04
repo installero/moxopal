@@ -31,7 +31,12 @@
             <div class="timer">
               <p class="timer-time" id="timer"></p>
               <%= javascript_tag "setTimer('timer',#{@context.time_passed/60},#{@context.time_passed%60});" %>
-              <p class="timer-task" style="display:none">Статья Брома Михельса<a href="#" style="margin-left:.5em; color:black; text-decoration:none">✔</a></p>
+              <% if @context.active_task.status == 'active' %>
+                <p id="task_<%= @context.active_task.id %>" class="timer-task">
+                  <%= @context.active_task.title %>
+                  <%= link_to '✔', task_path(@context.active_task, :task => {:status => 'done'}), :remote => true, :method => :put, :title => 'Задача выполнена!', :style => 'margin-left:.5em; color:black; text-decoration:none' %>
+                </p>
+              <% end %>
             </div>
           <% end %>
           <%= link_to raw("&uarr;"), contexts_path %>

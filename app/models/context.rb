@@ -2,6 +2,7 @@ class Context < ActiveRecord::Base
   has_attached_file :picture, :styles => {:medium => "250x250>", :thumb => "80x80>"}
   has_many :tasks, :dependent => :destroy
   has_many :activities, :dependent => :destroy
+  has_one :active_task, :class_name => "Task"
 
   accepts_nested_attributes_for :tasks
 
