@@ -18,9 +18,6 @@
     <% @archived_contexts.each do |context| %>
       <tr class="<%= 'active' if context.active? %>">
         <td><%= link_to context.title, context %></td>
-        <% context.activities.each do |a| %>
-          <td><%= symbol(a) %></td>
-        <% end %>
       </tr>
     <% end %>
   </table>
