@@ -23,20 +23,22 @@
               </div>
             </div>
           <% end %>
-          <div class="actions" style="color:#666; padding-top:.3em; border-top:1px solid #ddd; margin-top:.5em">
+          <div class="actions" style="color:#666; margin-top:.5em">
             <% @activities.each do |activity| %>
               <em><%= symbol(activity) %></em>
             <% end %>
           </div>
           <% unless @context.active? %>
-            <ul class="tasks">
-              <% @context.active_tasks.each do |task| %>
-                <li id="task_<%= task.id %>">
-                  <%= link_to task.title, activities_path(:activity => {:task_id => task.id, :context_id => @context.id, :accepted => true}), :method => :post, :title => 'Начать заниматься этой задачей' %>
-                  <%= link_to '✔', task_path(task, :task => {:status => 'done'}), :remote => true, :method => :put, :title => 'Задача выполнена!' %>
-                </li>
-              <% end %>
-            </ul>
+            <% unless  @context.active_tasks.blank? %>
+              <ul class="tasks">
+                <% @context.active_tasks.each do |task| %>
+                  <li id="task_<%= task.id %>">
+                    <%= link_to task.title, activities_path(:activity => {:task_id => task.id, :context_id => @context.id, :accepted => true}), :method => :post, :title => 'Начать заниматься этой задачей' %>
+                    <%= link_to '✔', task_path(task, :task => {:status => 'done'}), :remote => true, :method => :put, :title => 'Задача выполнена!' %>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
           <% else %>
             <div class="timer">
               <p class="timer-time" id="timer"></p>
