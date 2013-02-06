@@ -18,6 +18,10 @@ class TasksController < ApplicationController
     @task = Task.find params[:id]
     @task.update_attributes(params[:task])
     @task.save
+    if @task.status == 'done'
+      @task.context.active_task = nil
+      @task.context.save
+    end
   end
 
   def create

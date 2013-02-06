@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130124115242) do
+ActiveRecord::Schema.define(:version => 20130206114011) do
 
   create_table "activities", :force => true do |t|
     t.integer  "task_id"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(:version => 20130124115242) do
     t.datetime "picture_updated_at"
     t.string   "picture_content_type"
     t.string   "status"
-    t.integer  "current_task_id"
+    t.integer  "active_task_id"
   end
 
   create_table "tasks", :force => true do |t|

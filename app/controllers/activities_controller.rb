@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
   def create
     activity = Activity.create(params[:activity])
     if activity.accepted
-      activity.context.start
+      activity.context.start :active_task_id => activity.task.id
       redirect_path = activity.context
     else
       Context.stop_all

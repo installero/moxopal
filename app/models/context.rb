@@ -2,7 +2,7 @@ class Context < ActiveRecord::Base
   has_attached_file :picture, :styles => {:medium => "250x200>", :thumb => "80x80>"}
   has_many :tasks, :dependent => :destroy
   has_many :activities, :dependent => :destroy
-  has_one :active_task, :class_name => "Task"
+  belongs_to :active_task, :class_name => "Task"
 
   accepts_nested_attributes_for :tasks
 
@@ -37,9 +37,12 @@ class Context < ActiveRecord::Base
     return context
   end
 
-  def start
+  def start(options = {})
     Context.stop_all
     self.status = 'active'
+    unless options[:active_task_id].blank?
+      self.active_task = self.tasks.find options[:active_task_id]
+    end
     self.save
   end
 
@@ -48,7 +51,7 @@ class Context < ActiveRecord::Base
   end
 
   def self.stop_all
-    Context.where(:status => 'active').each{|c| c.status = 'common'; c.save}
+    Context.where(:status => 'active').each{|c| c.status = 'common'; c.active_task = nil; c.save}
   end
 
   def time_passed
