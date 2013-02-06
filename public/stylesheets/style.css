@@ -21,7 +21,7 @@ h1 {font-weight:normal; font-size:200%}
     -moz-box-shadow: inset 0 0 10px rgba(0, 0, 255, 0.2);
     box-shadow: inset 0 0 10px rgba(0, 0, 255, 0.2);
 }
-.tasks {font-size:80%; text-align:left; width:80%; margin-top:30px}
+.tasks {font-size:80%; text-align:left; width:80%; padding-top:.3em; border-top:1px solid #ddd; margin-top:.5em}
 .tasks li {list-style:none; margin:.5em 0}
 .tasks em {float:right}
 .tasks a {color:#333; text-decoration:none; border-bottom:1px dotted}
