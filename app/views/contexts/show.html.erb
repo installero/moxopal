@@ -12,7 +12,7 @@
             <%= link_to image_tag('up.png'), contexts_path %>
           </div>
           <h1 style="clear:both; margin-top:.5em"><%= @context.title %></h1>
-          <div style="height:200px; width:250px; margin:.3em auto; vertical-aling:middle; align:center; display:table"><div style="display:table-cell; vertical-align:middle"><%= image_tag @context.picture.url(:medium) %></div></div>
+          <div style="height:200px; width:250px; margin:.3em auto; vertical-aling:middle; text-align:center; display:table"><div style="display:table-cell; vertical-align:middle"><%= image_tag @context.picture.url(:medium) %></div></div>
           <% unless @context.active? %>
             <div class="actions holder">
               <div style="overflow:hidden; border-color: #ddd #aaa #aaa #ddd; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; border-style: solid; border-width: 1px; background:#f0f0f0">
