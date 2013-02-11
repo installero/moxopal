@@ -3,3 +3,11 @@
 
 en:
   hello: "Hello world"
+  date:
+    formats:
+      default: "%d %m"
+      short: "%d %m"
+  time:
+    formats:
+      default: "%d %m"
+      short: "%d %b"

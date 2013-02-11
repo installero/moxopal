@@ -6,6 +6,7 @@ Moxopal::Application.routes.draw do |map|
 
   resources :contexts do
     get 'shuffle', :on => :collection
+    get 'statistics', :on => :collection
     get 'archive', :on => :member
   end
   resources :tasks

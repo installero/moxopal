@@ -35,6 +35,16 @@ class ContextsController < ApplicationController
     redirect_to contexts_path
   end
 
+  def statistics
+    @contexts = Context.all
+    @weeks = []
+    @weeks[0] = Time.now.beginning_of_week..Time.now
+    (1..4).each do |i|
+      @weeks[i] = (@weeks[i-1].first-7.days)..(@weeks[i-1].first)
+    end
+    @weeks.reverse!
+  end
+
   def update
     @context = Context.find(params[:id])
 

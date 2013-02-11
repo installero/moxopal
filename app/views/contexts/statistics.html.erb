@@ -1,0 +1,30 @@
+<style type="text/css" media="screen">
+  table {border-collapse:collapse}
+  table td {border:1px solid #ddd; padding:2px 4px}
+  table th {padding:2px 4px; font-size:80%; color:#999}
+</style>
+<table>
+  <thead>
+    <tr>
+    	<th></th>
+    	<th colspan=3>Total</th>
+      <% @weeks.each do |week| %>
+        <th colspan=3><%= l(week.first, :format => :short) %>—<%= l(week.last-1, :format => :short) %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <% @contexts.each do |context| %>
+	<tr>
+		<td><%= context.title %></td>
+    <td><%= accepted = context.activities.where(:accepted => true).count %></td>
+    <td><%= declined = context.activities.where(:accepted => false).count %></td>
+    <td><%= accepted+declined == 0 ? 0 : (accepted.to_f/(accepted+declined)*100).round %>%</td>
+    <% @weeks.each do |week| %>
+      <td><%= accepted = context.activities.where(:created_at => week, :accepted => true).count %></td>
+      <td><%= declined = context.activities.where(:created_at => week, :accepted => false).count %></td>
+      <td><%= accepted+declined == 0 ? 0 : (accepted.to_f/(accepted+declined)*100).round %>%</td>
+    <% end %>
+	</tr>
+  <% end %>
+</table>
+<%= link_to "Back", contexts_path %>
