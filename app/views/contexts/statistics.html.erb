@@ -7,9 +7,15 @@
   <thead>
     <tr>
     	<th></th>
-    	<th colspan=3>Total</th>
+      <th colspan=3>
+        <p>Total</p>
+        <p><%= @activities.count %></p>
+      </th>
       <% @weeks.each do |week| %>
-        <th colspan=3><%= l(week.first, :format => :short) %>—<%= l(week.last-1, :format => :short) %></th>
+        <th colspan=3>
+          <p><%= l(week.first, :format => :short) %>—<%= l(week.last-1, :format => :short) %></p>
+          <p><%= @activities.select{|a| week.include?(a.created_at) and a.accepted}.count %></p>
+        </th>
       <% end %>
     </tr>
   </thead>

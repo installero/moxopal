@@ -37,6 +37,7 @@ class ContextsController < ApplicationController
 
   def statistics
     @contexts = Context.all
+    @activities = Activity.where(:accepted => true)
     @weeks = []
     @weeks[0] = Time.now.beginning_of_week..Time.now
     (1..4).each do |i|
